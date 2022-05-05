@@ -1,5 +1,5 @@
 // COMMENT: Load modules
-const routes = require("./routes");
+const Routes = require("./routes");
 
 class App {
   constructor(opts) {
@@ -7,8 +7,10 @@ class App {
   }
 
   init = async () => {
+    const routes = new Routes();
+
     // COMMENT: Register server routes
-    await this.opts.engine.register(routes);
+    await this.opts.engine.register(routes.init);
   }
 }
 
