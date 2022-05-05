@@ -1,0 +1,45 @@
+{
+  "name": "sajcms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "install": "node install.js",
+    "migrateUp": "knex migrate:latest --knexfile db/knexfile.js",
+    "migrateDown": "knex migrate:rollback --all --knexfile db/knexfile.js",
+    "seed": "knex seed:run --knexfile db/knexfile.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cfonts": "^2.10.0",
+    "dns-prefetch-control": "^0.3.0",
+    "dotenv": "^16.0.0",
+    "fast-safe-stringify": "^2.1.1",
+    "fastify": "^3.27.2",
+    "fastify-cors": "^6.0.3",
+    "fastify-formbody": "^5.2.0",
+    "fastify-helmet": "^7.0.1",
+    "fastify-multipart": "^5.3.1",
+    "fastify-plugin": "^3.0.1",
+    "fastify-static": "^4.5.0",
+    "frameguard": "^4.0.0",
+    "hsts": "^2.2.0",
+    "ienoopen": "^1.1.1",
+    "inquirer": "^8.2.0",
+    "jimp": "^0.16.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^1.0.3",
+    "lodash": "^4.17.21",
+    "middie": "^6.0.0",
+    "pg": "^8.7.3",
+    "pino-pretty": "^7.5.1",
+    "x-xss-protection": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
