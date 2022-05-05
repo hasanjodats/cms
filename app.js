@@ -10,7 +10,7 @@ class App {
     const routes = new Routes();
 
     // COMMENT: Register server routes
-    await this.opts.engine.register(routes.init);
+    await this.opts.engine.register(routes.register);
   }
 }
 

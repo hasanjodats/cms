@@ -4,7 +4,7 @@ const error = require("./error");
 const api = require("./api");
 
 class Routes {
-  init = async (fastify, opts) => {
+  register = async (fastify, opts) => {
     // COMMENT: Handle public notfound route
     await notFound(fastify, function (request, reply) {
       reply.status(404).send({ message: "not found" });
