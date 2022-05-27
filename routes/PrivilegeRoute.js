@@ -1,18 +1,19 @@
+const AuthenticationController =
+  require("./../controller/AuthenticationController");
+const PrivilegeController = require("./../controller/PrivilegeController");
+const PrivilegeSchema = require("./../schema/PrivilegeSchema");
+
 // COMMENT: Create permission routes plugin
 module.exports = async (fastify, options) => {
-  const AuthenticationController =
-    require("./../controller/AuthenticationController")(fastify.knex);
-  const PrivilegeController = require("./../controller/PrivilegeController")(
-    fastify.knex
-  );
-  const PrivilegeSchema = require("./../schema/PrivilegeSchema");
+  const authenticationController = new AuthenticationController(fastify.knex);
+  const privilegeController = new PrivilegeController(fastify.knex);
 
   // COMMENT: return all privileges
   fastify.route({
     method: "GET",
     url: "/",
     schema: PrivilegeSchema.all,
-    handler: PrivilegeController.all,
+    handler: privilegeController.all,
   });
 
   // COMMENT: return one privilege
@@ -20,7 +21,7 @@ module.exports = async (fastify, options) => {
     method: "GET",
     url: "/:id",
     schema: PrivilegeSchema.one,
-    handler: PrivilegeController.one,
+    handler: privilegeController.one,
   });
 
   // COMMENT: create new privilege
@@ -28,8 +29,8 @@ module.exports = async (fastify, options) => {
     method: "POST",
     url: "/",
     schema: PrivilegeSchema.create,
-    preHandler: [AuthenticationController.restrictTo("CREATE_PRIVILEGE")],
-    handler: PrivilegeController.create,
+    preHandler: [authenticationController.restrictTo("CREATE_PRIVILEGE")],
+    handler: privilegeController.create,
   });
 
   // COMMENT: update entire privilege
@@ -37,8 +38,8 @@ module.exports = async (fastify, options) => {
     method: "PATCH",
     url: "/:id",
     schema: PrivilegeSchema.update,
-    preHandler: [AuthenticationController.restrictTo("UPDATE_PRIVILEGE")],
-    handler: PrivilegeController.update,
+    preHandler: [authenticationController.restrictTo("UPDATE_PRIVILEGE")],
+    handler: privilegeController.update,
   });
 
   // COMMENT: edit specific property of privilege
@@ -46,8 +47,8 @@ module.exports = async (fastify, options) => {
     method: "PUT",
     url: "/:id",
     schema: PrivilegeSchema.edit,
-    preHandler: [AuthenticationController.restrictTo("UPDATE_PRIVILEGE")],
-    handler: PrivilegeController.edit,
+    preHandler: [authenticationController.restrictTo("UPDATE_PRIVILEGE")],
+    handler: privilegeController.edit,
   });
 
   // COMMENT: delete one privilege
@@ -55,8 +56,8 @@ module.exports = async (fastify, options) => {
     method: "DELETE",
     url: "/:id",
     schema: PrivilegeSchema.del,
-    preHandler: [AuthenticationController.restrictTo("DELETE_PRIVILEGE")],
-    handler: PrivilegeController.delete,
+    preHandler: [authenticationController.restrictTo("DELETE_PRIVILEGE")],
+    handler: privilegeController.delete,
   });
 
   // COMMENT: delete all privilege
@@ -64,7 +65,7 @@ module.exports = async (fastify, options) => {
     method: "DELETE",
     url: "/",
     schema: PrivilegeSchema.deleteAll,
-    preHandler: [AuthenticationController.restrictTo("DELETE_PRIVILEGE")],
-    handler: PrivilegeController.deleteAll,
+    preHandler: [authenticationController.restrictTo("DELETE_PRIVILEGE")],
+    handler: privilegeController.deleteAll,
   });
 };
