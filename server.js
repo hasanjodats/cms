@@ -22,6 +22,7 @@ class Server {
       await this.engine.listen(this.opts.host, this.opts.port);
       console.log("Server successfully started");
     } catch (err) {
+      console.log(err);
       this.engine.log.error(err);
       process.exit(1);
     }

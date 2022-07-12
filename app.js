@@ -7,10 +7,8 @@ class App {
   }
 
   init = async () => {
-    const routes = new Routes();
-
     // COMMENT: Register server routes
-    await this.opts.engine.register(routes.register);
+    await this.opts.engine.register(Routes);
   }
 }
 
